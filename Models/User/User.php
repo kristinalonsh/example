@@ -12,38 +12,36 @@ class User
 
     public function __construct(string $name, int $age)
     {
-        if ($this->checkAge($age)) {
-            $this -> name = $name;
-            $this -> age = $age;
+        if ($this -> checkAge ($age)) {
+            $this -> setName ($name) -> setAge ($age);
         }
-        else {
-            throw new UncorrectAgeException('Пользователь не может быть младше 18 или старше 100 лет!');
-        }
-
     }
+
 
     public function getName()
     {
-        return $this->name;
+        return $this -> name;
     }
 
 
     public function getAge()
     {
-        return $this->age;
+        return $this -> age;
     }
 
 
-    public function setName($name): void
+    public function setName ($name) : object
     {
-        $this->name = $name;
+        $this -> name = $name;
+        return $this;
     }
 
 
-    public function setAge($age): void
+    public function setAge ($age) : object
     {
-        if ($this->checkAge($age)) {
-            $this->age = $age;
+        if ($this -> checkAge($age)) {
+            $this -> age = $age;
+            return $this;
         }
         else {
             throw new UncorrectAgeException('Укажите возраст от 18 от 100!');
@@ -52,7 +50,7 @@ class User
 
     private function checkAge($age) : bool
     {
-        if ($age>18 & $age<101)
+        if ($age > 18 && $age < 101)
         {
             return true;
         }

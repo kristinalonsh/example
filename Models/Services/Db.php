@@ -11,21 +11,38 @@ class Db
 {
     private $db;
 
-    /** Соединение с БД */
-    public function __construct()
+    /** Соединение с БД через файл с настройками*/
+//    public function __construct()
+//    {
+//        $dbOptions = (require $_SERVER['DOCUMENT_ROOT'] . '/Setting.php')['db'];
+//        try {
+//            $this->db = new PDO(
+//                'mysql:host=' . $dbOptions['host'] . ';dbname=' . $dbOptions['dbname'],
+//                $dbOptions['user'],
+//                $dbOptions['password']
+//            );
+//            $this->db->exec('SET NAMES UTF8');
+//        } catch (\PDOException $e) {
+//            throw new DbException('Не удалось подключиться к базе данных');
+//        }
+//    }
+
+    /** Соединение с БД методом передачи параметров подключения в момент создания объекта*/
+    public function __construct ($host, $dbname, $user, $password)
     {
-        $dbOptions = (require $_SERVER['DOCUMENT_ROOT'] . '/Setting.php')['db'];
+
         try {
             $this->db = new PDO(
-                'mysql:host=' . $dbOptions['host'] . ';dbname=' . $dbOptions['dbname'],
-                $dbOptions['user'],
-                $dbOptions['password']
+                'mysql:host=' . $host . ';dbname=' . $dbname,
+                $user,
+                $password
             );
             $this->db->exec('SET NAMES UTF8');
         } catch (\PDOException $e) {
             throw new DbException('Не удалось подключиться к базе данных');
         }
     }
+
 
 
     /** Операции над БД */

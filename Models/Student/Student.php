@@ -24,15 +24,17 @@ class Student extends User
     }
 
 
-    public function setCourse($course): void
+    public function setCourse($course): object
     {
         $this->course = $course;
+        return $this;
     }
 
 
-    public function setStipendia($stipendia): void
+    public function setStipendia($stipendia): object
     {
         $this->stipendia = $stipendia;
+        return $this;
     }
 
 }

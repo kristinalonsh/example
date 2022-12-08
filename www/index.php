@@ -23,14 +23,18 @@ try {
     $a = new Worker('Василий', 56);
     $b = new Worker('Геннадий', 28);
 
+    $c = new User('Петр', 102);
+    echo $c -> getName();
+    echo '<br/>';
+    echo $c -> getAge();
+
     $a -> setSalary(45000);
     $b -> setSalary(63000);
-    $sum = $a->getSalary() + $b->getSalary();
-    echo $a -> hello();
+    $sum = $a -> getSalary () + $b -> getSalary ();
+    echo $a -> hello ();
     echo '<br>';
-    echo $b ->hello();
+    echo $b ->hello ();
     echo ('<br>Таким образом, Васёк и Гена на двоих получают '.$sum.' рублей. Пора сократить расходы компании!<br>');
-
 
 
 
@@ -53,8 +57,12 @@ try {
     /** ПРОВЕРКА РАБОТЫ КЛАССА cookie */
     echo '<br><br><b>ПРОВЕРКА РАБОТЫ КЛАССА Cookie</b><br>';
     $cook = new Cookie();
-    $cook->setCookie('user', 'Павел');
-    echo $cook->getCookie('user');
+    $cook -> setCookie('user', 'Павел');
+    $cook -> setCookie('role', 'Оператор');
+    var_dump($_COOKIE);
+    $cook -> del ('user');
+    var_dump($_COOKIE);
+
 
 
     /** ПРОВЕРКА РАБОТЫ КЛАССА session */
@@ -80,7 +88,7 @@ try {
 
     /** ПРОВЕРКА РАБОТЫ КЛАССА Db */
     echo '<br><br><b>ПРОВЕРКА РАБОТЫ КЛАССА Db</b></br><br>';
-    $db = new Db();
+    $db = new Db('localhost', 'my_project', 'root', 'root');
     $tableName = 'test';
 
 

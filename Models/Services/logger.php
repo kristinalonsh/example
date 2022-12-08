@@ -8,14 +8,12 @@ use Models\Services\Db;
 
 class logger
 {
-    private $log;
-    private $tableName;
+    private $db;
+    const TABLE_NAME = 'log';
 
     public function __construct()
     {
-        $this->tableName = 'log';
     }
-
 
     /** Сохранение записи в лог */
     public static function saveLog($type, $source, $message) : void {
@@ -24,26 +22,23 @@ class logger
                 'source' => $source,
                'message' => $message
             ];
-    $tableName = 'log';
-    $db = new Db();
-    $db ->insert($tableName, $param);
+    $db = new Db('localhost', 'my_project', 'root', 'root');
+    $db ->insert(self::TABLE_NAME, $param);
     }
 
 
     /** Вывод последних n строк лога */
     public static function LastRowsLog ($rows) : ?array
     {
-        $tableName = 'log';
-        $db = new Db();
-        return $db -> selectLastRows($tableName, $rows);
+        $db = new Db('localhost', 'my_project', 'root', 'root');
+        return $db -> selectLastRows(self::TABLE_NAME, $rows);
     }
 
 
     /** Очистка лога */
     public static function clearLog() : void
     {
-        $tableName = ['log'];
-        $db = new Db();
-        $db ->deleteAllFromTable($tableName);
+        $db = new Db('localhost', 'my_project', 'root', 'root');
+        $db ->deleteAllFromTable([self::TABLE_NAME]);
     }
 }

@@ -15,14 +15,18 @@ class Flash
         $this -> saveSession = new Session();
     }
 
-    public function setMessage ($name, $value) : void {
+    public function setMessage ($name, $value) : object
+    {
         $this -> saveSession -> set ($name, $value);
+        return $this;
     }
 
-    public function getMessage ($name) {
-        if($this->saveSession->check ($name)) {
-            return $this->saveSession->get($name);
+    public function getMessage ($name) : string
+    {
+        if (!$this -> saveSession -> check ($name)) {
+            return '';
         }
+        return $this -> saveSession -> get ($name);
     }
 
 }

@@ -16,17 +16,18 @@ class Worker extends User
 
     public function getSalary()
     {
-        return $this->salary;
+        return $this -> salary;
     }
 
-    public function setSalary($salary): void
+    public function setSalary($salary): object
     {
-        $this->salary = $salary;
+        $this -> salary = $salary;
+        return $this;
     }
 
     public function hello() : void
     {
-        echo 'Привет! Я - ' . $this->getName() . '. Мне ' .$this ->getAge(). ' лет, моя зарплата на сегодня ' .$this ->getSalary() .' рублей';
+        echo 'Привет! Я - ' . $this -> getName() . '. Мне ' .$this -> getAge(). ' лет, моя зарплата на сегодня ' .$this -> getSalary() .' рублей';
     }
 
 }
